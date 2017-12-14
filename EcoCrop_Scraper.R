@@ -16,15 +16,15 @@ library(tidyverse)
 ### Grab and read entire list of crop datasheet urls into a variable
 urls <- read_lines("/Users/hunterheaivilin/GitHub/Data-Operations/datasheeturl.csv")
 
-#remove header line from url list
+# Remove header row from url list
 urls <- urls[-1]
 
 # Create dataframe with precreated hardcoded column names
 myDataFrame <- read.csv("/Users/hunterheaivilin/GitHub/Tables-All-The-Way-Down/ecocrop_colnames.csv", header=TRUE, stringsAsFactors=FALSE)
 
 
-# for loop to move through through the url list. 
-for(i in (urls[1:3])) {
+# for loop to move through through the url list. [1:50]
+for(i in (urls)) {
   html <- read_html(i)
   species <- html_text(html_nodes(html, "h2"))
   
@@ -83,18 +83,18 @@ for(i in (urls[1:3])) {
   c2 <- species # Species name
   c3 <- tbls2_ls$Description[1, 2] # Life form
   c4 <- tbls2_ls$Description[2, 2] # Habit
-  c5 <- tbls2_ls$Description[3, 2] 
-  c6 <- tbls2_ls$Description[1, 4]
-  c7 <- tbls2_ls$Description[2, 4]
-  c8 <- tbls2_ls$Description[3, 4]
-  c9 <- tbls2_ls$Ecology[3,2]
-  c10 <- tbls2_ls$Ecology[3,3]
-  c11 <- tbls2_ls$Ecology[3,4]
-  c12 <- tbls2_ls$Ecology[3,5]
-  c13 <- tbls2_ls$Ecology[4,2]
-  c14 <- tbls2_ls$Ecology[4,3]
-  c15 <- tbls2_ls$Ecology[4,4]
-  c16 <- tbls2_ls$Ecology[4,5]
+  c5 <- tbls2_ls$Description[3, 2] # Life span
+  c6 <- tbls2_ls$Description[1, 4] # Physiology
+  c7 <- tbls2_ls$Description[2, 4] # Category
+  c8 <- tbls2_ls$Description[3, 4] # Plant attributes
+  c9 <- tbls2_ls$Ecology[3,2] # Temperature optimal min
+  c10 <- tbls2_ls$Ecology[3,3] # Temperature optimal max
+  c11 <- tbls2_ls$Ecology[3,4] # Temperature absolute min
+  c12 <- tbls2_ls$Ecology[3,5] # Temperature absolute min
+  c13 <- tbls2_ls$Ecology[4,2] # Rainfall optimal min
+  c14 <- tbls2_ls$Ecology[4,3] # Rainfall optimal max
+  c15 <- tbls2_ls$Ecology[4,4] # Rainfall absolute min
+  c16 <- tbls2_ls$Ecology[4,5] # Rainfall absolute max
   c17 <- tbls2_ls$Ecology[5,2]
   c18 <- tbls2_ls$Ecology[5,3]
   c19 <- tbls2_ls$Ecology[5,4]
@@ -154,4 +154,10 @@ for(i in (urls[1:3])) {
 # Deletes first row of duplicate title row
 ## myDataFrame <- myDataFrame[-1,]
 
+# View output in Rstudio
 View(myDataFrame)
+
+# Delete 1st row (duplicate title row) and save to csv
+write.csv(myDataFrame[-1,],"cropbasics.csv", row.names=F)
+
+
