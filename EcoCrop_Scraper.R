@@ -1,3 +1,7 @@
+#### Beginning of script to scrape crop data from FAO's EcoCrop database
+
+
+
 ### Check for packages, install if necessary
 list.of.packages <- c("rvest", "magrittr", "tidyverse")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
@@ -12,16 +16,19 @@ library(tidyverse)
 ### Grab and read entire list of crop datasheet urls into a variable
 urls <- read_lines("/Users/hunterheaivilin/GitHub/Data-Operations/datasheeturl.csv")
 
+#remove header line from url list
+urls <- urls[-1]
+
 # Create dataframe with precreated hardcoded column names
 myDataFrame <- read.csv("/Users/hunterheaivilin/GitHub/Tables-All-The-Way-Down/ecocrop_colnames.csv", header=TRUE, stringsAsFactors=FALSE)
 
 
-# for loop to move through through the url list
-for(i in (urls[2:8])) {
+# for loop to move through through the url list. 
+for(i in (urls[1:3])) {
   html <- read_html(i)
   species <- html_text(html_nodes(html, "h2"))
   
-  ## print(cat("Grabbing", species, "data from", i)) ## use this if you want a read out 
+  # print(cat("Grabbing", species, "data from", i)) ## use this if you want a read out 
   
   # Create empty list to add table data into
   tbls2_ls <- list()
@@ -143,5 +150,8 @@ for(i in (urls[2:8])) {
   myDataFrame <- rbind(myDataFrame, crop_data)
   
 }
+
+# Deletes first row of duplicate title row
+## myDataFrame <- myDataFrame[-1,]
 
 View(myDataFrame)
