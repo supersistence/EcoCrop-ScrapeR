@@ -43,29 +43,27 @@ for(i in (urls[])) {
     .[[1]]
   
   
-  #Clean up list tables into a better format
+  # Clean up list tables into a better format
   
   # Rename columns with variables in first row
   colnames(uses_ls$Uses) <- uses_ls$Uses[1,]
   
-  #Remove first row
+  # Remove first row
   uses_ls$Uses <- uses_ls$Uses[-1,]
   
   # Adds new column with crop code
-  uses_ls$Uses$crop_code <- cropcode
-  
-  # Add scraped use table to master use 'yuse' table
-  yust <- bind_rows(yust, uses_ls$Uses)
+  if (nrow(uses_ls$Uses) == 0) {
+    print("Useless!")
+  } else {
+    uses_ls$Uses$crop_code <- cropcode
+    
+    # Add scraped use table to master use 'yuse' table 
+    yust <- bind_rows(yust, uses_ls$Uses)
+    }
   
 }
 
 View(yust)
-View(uses_ls$Uses)
 
-
-
-
-#### Receviing error for blank tables
-# Error in `$<-.data.frame`(`*tmp*`, "crop_code", value = "299") : 
-# replacement has 1 row, data has 0
+write.csv(yust,"crop_uses.csv", row.names=F)
 
