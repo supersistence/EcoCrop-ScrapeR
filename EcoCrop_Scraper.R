@@ -151,9 +151,6 @@ for(i in (urls)) {
   
 }
 
-# Deletes first row of duplicate title row
-## myDataFrame <- myDataFrame[-1,]
-
 # View output in Rstudio
 View(myDataFrame)
 
