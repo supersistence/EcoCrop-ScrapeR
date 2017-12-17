@@ -1,15 +1,17 @@
 #### Starting script to grab information from View Crop pages of FAO's EcoCrop database
 
-## need to add for looping 
 
-### Functioning  
-  urls2 <- read_lines('/Users/hunterheaivilin/GitHub/Data-Operations/viewcropurl.csv')
-  urls2 <- urls[-1]
+
+
+urls2 <- read_lines('/Users/hunterheaivilin/GitHub/Data-Operations/viewcropurl.csv')
+urls2 <- urls2[-1]
+vws <- list()
+vewr <- data_frame(Ecocrop_code, Authority, Family, Synonyms, Common_names, Editor, Notes, Sources)
   
-  html2 <- read_html(urls[2])
-  
-  vws <- list()
-  
+View(vewr)
+  for(i in (urls2[1:4])) {
+  html2 <- read_html(i)
+
   vws$gnrl <- html2 %>%
     html_nodes("table") %>% 
     .[2] %>%
@@ -21,10 +23,7 @@
     .[3] %>%
     html_table(fill = TRUE) %>%
     .[[1]]
-  
-  View(vws)
-  
-  
+
   Authority <- vws$gnrl[1,2]
   Family <- vws$gnrl[2,2]
   Synonyms <- vws$gnrl[3,2]
@@ -34,8 +33,16 @@
   Notes <- vws$Notes[1,]
   Sources <- vws$Notes[2,]
   
-  vewcrop <- list()
-  vewcrop <- c( Authority, Family, Synonym, Common_names, Editor, Ecocrop_code, Notes, Sources)
+  vewcrop <- c(Ecocrop_code, Authority, Family, Synonyms, Common_names, Editor, Notes, Sources)
+  vewcrop <- t(vewcrop)
+  
+  # Add crop data from crop i into dataframe with hardcoded column titles
+  vewr <- rbind(vewr, vewcrop, colNames = FALSE)
+  
+}
+  
+View(vewcrop)
 
-  View(vws$Notes)
+## Error in match.names(clabs, names(xi)) : 
+#  names do not match previous names
   
