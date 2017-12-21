@@ -16,5 +16,3 @@ The [Usery.R](https://github.com/supersistence/Data-Operations/blob/master/usery
 
 The [Viewcrop.R](https://github.com/supersistence/Data-Operations/blob/master/Viewcrop.R) script scrapes additional data (common names, data sources, etc) from the 'View crop' page ([example for Okra](http://ecocrop.fao.org/ecocrop/srv/en/cropView?id=289)) for each crop and outputs to [crop_view_data.csv](https://github.com/supersistence/Data-Operations/blob/master/crop_view_data.csv). To function it requires the [viewcropurl.csv](https://github.com/supersistence/Data-Operations/blob/master/viewcropurl.csv) which is a preproduced list of 'View crop' page urls for all crops created by appending the crop codes, found by pulling the full species list by selecting 'all' plants on the [search page](http://ecocrop.fao.org/ecocrop/srv/en/cropSearchForm), to the viewcrop url prefix.
 
-All items are stored in 
-
