@@ -5,7 +5,7 @@ Scraping the FAO EcoCrop database <br />
 
 The [Food and Agriculture Organization of the United Nations](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjV0rvhoJrYAhVK02MKHWDUBp8QFggnMAA&url=http%3A%2F%2Fwww.fao.org%2F&usg=AOvVaw0Xte9SsP8ULWKRBs-qjsPg) (FAO) produced a Crop Ecological Requirements Database (EcoCrop) ([explanation here](http://www.fao.org/land-water/land/land-governance/land-resources-planning-toolbox/category/details/en/c/1027491/)) ([database here](http://ecocrop.fao.org/ecocrop/srv/en/home)) with myriad data about over 2500 crop species.
 
-These data hase proven useuful for a variety of projects ([1](http://www.sciencedirect.com/science/article/pii/S0168192311002814),[2](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183737), [3..](https://scholar.google.com/scholar?q=FAO+ecocrop+database&hl=en&as_sdt=0,5)) but the website offers no download options and query options are limited certain types actions.
+These data have proven useuful for a variety of projects ([1](http://www.sciencedirect.com/science/article/pii/S0168192311002814),[2](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0183737), [3..](https://scholar.google.com/scholar?q=FAO+ecocrop+database&hl=en&as_sdt=0,5)) but the website offers no download options and query options are limited certain types actions.
 
 To gain better access to the dataset three scripts are used to output .csv files that scrape certain portions of the data for a given crop. 
 
